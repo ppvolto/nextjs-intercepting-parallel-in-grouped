@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,33 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased grid grid-rows-[auto_1fr]",
+          inter.className
+        )}
+      >
+        <div className="flex flex-col items-center justify-between p-2 border-b">
+          <ul className="flex gap-4">
+            <Button asChild>
+              <li>
+                <a href="/">Home</a>
+              </li>
+            </Button>
+            <Button asChild>
+              <li>
+                <a href="/articles">Articles</a>
+              </li>
+            </Button>
+            <Button asChild>
+              <li>
+                <a href="/users">Users</a>
+              </li>
+            </Button>
+          </ul>
+        </div>
+        {children}
+      </body>
     </html>
   );
 }
